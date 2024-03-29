@@ -105,7 +105,10 @@ public class AuthController {
         user.setEnable(signUpRequest.isEnable());
 
         // Assigner les rôles de l'utilisateur
-        List<String> strRoles = signUpRequest.getRole();
+            List<String> strRoles = new ArrayList<String>();
+        if ( signUpRequest.getRole() != null) {
+            strRoles = signUpRequest.getRole();
+        }
         List<Role> roles = new ArrayList<>();
         if (strRoles != null && !strRoles.isEmpty()) {
             strRoles.forEach(role -> {
