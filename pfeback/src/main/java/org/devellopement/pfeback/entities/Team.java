@@ -33,6 +33,12 @@ public class Team {
     private List<Player> players;
     @OneToMany(mappedBy = "team")
     private List<SeanceEntrainement> seancesEntrainement;
-
+    @ManyToMany
+    @JoinTable(
+            name = "team_tournament",
+            joinColumns = @JoinColumn(name = "team_id"),
+            inverseJoinColumns = @JoinColumn(name = "tournament_id")
+    )
+    private List<Tournament> tournaments;
 
 }

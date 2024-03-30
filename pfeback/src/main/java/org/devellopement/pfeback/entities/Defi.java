@@ -27,7 +27,9 @@ public class Defi {
 
     @ElementCollection
     private List<String> Event;
-
+    @ManyToOne
+    @JoinColumn(name = "tournament_id")
+    private Tournament tournament;
 
 }
 

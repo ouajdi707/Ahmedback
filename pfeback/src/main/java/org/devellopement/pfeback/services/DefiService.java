@@ -11,6 +11,6 @@ public interface DefiService {
     Defi addDefi (Defi defi);
     public void deleteDefi(Long id);
     Defi findById (Long id);
-    Manager updateDefi( Defi defi, Long id);
+    Defi updateDefi( Defi defi, Long id);
 
 }
