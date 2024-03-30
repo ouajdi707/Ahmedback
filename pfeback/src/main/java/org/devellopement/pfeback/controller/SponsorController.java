@@ -17,7 +17,7 @@ public class SponsorController {
     SponsorServiceImpl sponsorService;
     @GetMapping("/getSponsor")
     @ResponseBody
-    public List<Sponsor> getAllPlayer() {
+    public List<Sponsor> getAllSponsor() {
         List<Sponsor> list = sponsorService.RetreiveAllSponsor();
         return list;
     }
@@ -34,11 +34,11 @@ public class SponsorController {
     }
     @PostMapping("/Add-sponsor")
     @ResponseBody
-    public Sponsor addPlayer(@RequestBody Sponsor sponsor){
+    public Sponsor addSponsor(@RequestBody Sponsor sponsor){
 
         return sponsorService.addSponsor(sponsor);
     }
-    @PutMapping("/{sponsor-id}")
+    @PutMapping("/sponsor/{sponsor-id}")
     public ResponseEntity<Sponsor> updateSponsor(@PathVariable("sponsor-id") Long id, @RequestBody Sponsor modifiedSponsor) {
         Sponsor updatedSponsor = sponsorService.updateSponsor(modifiedSponsor, id);
         return ResponseEntity.ok(updatedSponsor);

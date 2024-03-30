@@ -33,7 +33,7 @@ public class Player {
     @OneToOne(mappedBy = "player", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Contratplayer contratplayer;
     @JsonIgnore
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id") // Nom de la colonne dans la table player qui fait référence à l'utilisateur
     private User user;
 

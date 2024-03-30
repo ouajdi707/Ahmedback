@@ -41,7 +41,7 @@ public class ManagerController {
 
         return mangerService.addManager(manager);
     }
-    @PutMapping("/{manager-id}")
+    @PutMapping("/manager/{manager-id}")
     public ResponseEntity<Manager> updateManager(@PathVariable("manager-id") Long id, @RequestBody Manager modifiedManager) {
         Manager updatedManager = mangerService.updateManager(modifiedManager, id);
         return ResponseEntity.ok(updatedManager);

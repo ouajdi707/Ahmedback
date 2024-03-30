@@ -37,7 +37,7 @@ public class PlayerController {
 
         return playerService.addPlayer(player);
     }
-    @PutMapping("/{player-id}")
+    @PutMapping("/player/{player-id}")
     public ResponseEntity<Player> updatePlayer(@PathVariable("player-id") Long id, @RequestBody Player modifiedPlayer) {
         Player updatedPlayer = playerService.updatePlayer(modifiedPlayer, id);
         return ResponseEntity.ok(updatedPlayer);

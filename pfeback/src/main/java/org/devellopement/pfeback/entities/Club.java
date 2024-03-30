@@ -5,11 +5,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Getter
 @Setter
@@ -24,5 +22,6 @@ public class Club {
     private String Name ;
     private String Description;
     private Date dateCreation;
-
+    @OneToMany(mappedBy = "club")
+    private List<Team> teams;
 }

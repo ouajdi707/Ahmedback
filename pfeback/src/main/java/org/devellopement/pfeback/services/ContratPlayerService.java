@@ -13,4 +13,5 @@ public interface ContratPlayerService {
     public void deleteContratPlayer(Long id);
     Contratplayer findById (Long id);
     Contratplayer updateContratPlayer( Contratplayer contratplayer, Long id);
+
 }
