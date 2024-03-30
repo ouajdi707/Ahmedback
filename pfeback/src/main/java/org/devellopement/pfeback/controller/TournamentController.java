@@ -41,5 +41,14 @@ public class TournamentController {
         Tournament updatedTournament = tournamentService.updateTournament(modifiedTournament, id);
         return ResponseEntity.ok(updatedTournament);
     }
+    @PutMapping("/assign-team-to-tournament/{tournamentId}/{teamId}")
+    public ResponseEntity<String> assignTeamToTournament(@PathVariable Long tournamentId, @PathVariable Long teamId) {
+        try {
+            tournamentService.assignTeamToTournament(tournamentId, teamId);
+            return ResponseEntity.ok("Team assigned to tournament successfully.");
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
 
 }

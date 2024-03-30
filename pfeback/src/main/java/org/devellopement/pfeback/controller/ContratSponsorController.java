@@ -46,8 +46,8 @@ public class ContratSponsorController {
         return contratSponosrService.updateContratSponsor(contratSponsor, id);
 
     }
-    @PostMapping("/assignContract")
-    public ResponseEntity<String> assignContractToPlayer(@RequestParam Long sponsorId, @RequestBody ContratSponsor contratSponsor) {
+    @PostMapping("/assignContractSponsor")
+    public ResponseEntity<String> assignContractSponsorToSponsor(@RequestParam Long sponsorId, @RequestBody ContratSponsor contratSponsor) {
         try {
             contratSponosrService.affecterContratSponsor(sponsorId, contratSponsor);
             return ResponseEntity.ok("Contrat assigned successfully");
