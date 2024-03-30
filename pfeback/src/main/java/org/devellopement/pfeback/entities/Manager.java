@@ -21,7 +21,7 @@ public class Manager  {
     private String NameManager;
     private Date dateOfBirth;
     @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "user_id") // Nom de la colonne dans la table player qui fait référence à l'utilisateur
+    @JoinColumn(name = "user_id")
     private User user;
 
 }
