@@ -43,5 +43,14 @@ public class SponsorController {
         Sponsor updatedSponsor = sponsorService.updateSponsor(modifiedSponsor, id);
         return ResponseEntity.ok(updatedSponsor);
     }
+    @PutMapping("/assign-sponsor-to-sponsor-team/{sponsorId}/{sponsorTeamId}")
+    public ResponseEntity<String> assignSponsorToSponsorTeam(@PathVariable Long sponsorId, @PathVariable Long sponsorTeamId) {
+        try {
+            sponsorService.assignSponsorToSponsorTeam(sponsorId, sponsorTeamId);
+            return ResponseEntity.ok("Sponsor assigned to Sponsor Team successfully.");
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
 
 }

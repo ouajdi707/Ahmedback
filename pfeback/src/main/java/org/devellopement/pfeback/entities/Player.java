@@ -36,5 +36,8 @@ public class Player {
     @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id") // Nom de la colonne dans la table player qui fait référence à l'utilisateur
     private User user;
+    @ManyToOne
+    @JoinColumn(name = "team_id")
+    private Team team;
 
 }

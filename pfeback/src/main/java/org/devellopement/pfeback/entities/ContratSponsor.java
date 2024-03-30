@@ -14,21 +14,20 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+public class ContratSponsor {
 
-public class Defi {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    private String Name ;
-    private String Description;
-    private Date dateStart;
-    private Date dateEnd;
-
     @ElementCollection
-    private List<String> Event;
+    private List<String> objectif;
+    private Date DeteStart ;
+    private Date DateEnd;
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "sponsor_id")
+    private Sponsor sponsor;
+
+
 
 
 }
-
-

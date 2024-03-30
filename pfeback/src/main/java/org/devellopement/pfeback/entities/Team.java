@@ -29,6 +29,10 @@ public class Team {
     private Club club;
     @OneToMany(mappedBy = "team")
     private List<AchivementsTeam> achivements;
+    @OneToMany(mappedBy = "team")
+    private List<Player> players;
+    @OneToMany(mappedBy = "team")
+    private List<SeanceEntrainement> seancesEntrainement;
 
 
 }

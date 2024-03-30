@@ -23,5 +23,6 @@ public class SponsorTeam {
     private Date date ;
     @ElementCollection
     private List<String> details;
-//Team
+    @OneToMany(mappedBy = "sponsorTeam")
+    private List<Sponsor> sponsors;
 }

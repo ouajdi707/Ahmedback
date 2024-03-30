@@ -1,7 +1,9 @@
 package org.devellopement.pfeback.services;
 
 import org.devellopement.pfeback.entities.Sponsor;
+import org.devellopement.pfeback.entities.SponsorTeam;
 import org.devellopement.pfeback.repository.SponsorRepository;
+import org.devellopement.pfeback.repository.SponsorTeamRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,6 +13,8 @@ import java.util.List;
 public class SponsorServiceImpl implements SponsorService{
     @Autowired
     SponsorRepository sponsorRepository;
+    @Autowired
+    private SponsorTeamRepo sponsorTeamRepository;
     @Override
     public List<Sponsor> RetreiveAllSponsor() {
         return sponsorRepository.findAll();
@@ -34,6 +38,7 @@ public class SponsorServiceImpl implements SponsorService{
 
     @Override
     public Sponsor updateSponsor(Sponsor modifiedSponsor, Long id) {
+
         Sponsor existingSponsor = sponsorRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Sponsor not found"));
 
@@ -43,5 +48,15 @@ public class SponsorServiceImpl implements SponsorService{
         modifiedSponsor.setUser(existingSponsor.getUser());
 
         return sponsorRepository.save(existingSponsor);
+    }
+    public void assignSponsorToSponsorTeam(Long sponsorId, Long sponsorTeamId) {
+        Sponsor sponsor = sponsorRepository.findById(sponsorId)
+                .orElseThrow(() -> new IllegalArgumentException("Sponsor not found"));
+
+        SponsorTeam sponsorTeam = sponsorTeamRepository.findById(sponsorTeamId)
+                .orElseThrow(() -> new IllegalArgumentException("Sponsor Team not found"));
+
+        sponsor.setSponsorTeam(sponsorTeam);
+        sponsorRepository.save(sponsor);
     }
 }

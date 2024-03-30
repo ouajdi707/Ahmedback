@@ -25,5 +25,9 @@ public class SeanceEntrainement {
     private Date dateEnd;
     @ElementCollection
     private List<String> rapport;
+    @ManyToOne
+    @JoinColumn(name = "team_id")
+    private Team team;
+
 
 }
