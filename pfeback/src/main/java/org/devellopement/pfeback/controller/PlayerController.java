@@ -25,9 +25,9 @@ public class PlayerController {
     public void removePlayer(@PathVariable("player-id") Long id) {
         playerService.deletePlayer(id);
     }
-    @GetMapping("/getPlayer/{player-id}")
+    @GetMapping("/getPlayer/{user-id}")
     @ResponseBody
-    public Player getPlayer(@PathVariable("player-id")Long id)
+    public Player getPlayer(@PathVariable("user-id")Long id)
     {
         return playerService.findById(id);
     }

@@ -2,8 +2,10 @@ package org.devellopement.pfeback.services;
 
 import org.devellopement.pfeback.entities.Contratplayer;
 import org.devellopement.pfeback.entities.Player;
+import org.devellopement.pfeback.entities.User;
 import org.devellopement.pfeback.repository.ContratPlayerRepository;
 import org.devellopement.pfeback.repository.PlayerRepository;
+import org.devellopement.pfeback.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +16,8 @@ public class PlayerServiceImpl implements PlayerService{
     PlayerRepository playerRepository;
     @Autowired
     private ContratPlayerRepository contratPlayerRepository;
-
+    @Autowired
+    UserRepository userRepository;
     @Override
     public List<Player> RetreivePlayer() {
         return playerRepository.findAll();
@@ -32,7 +35,8 @@ public class PlayerServiceImpl implements PlayerService{
 
     @Override
     public Player findById(Long id) {
-        return playerRepository.findById(id).get();
+        User user = userRepository.findById(id).get();
+        return playerRepository.findByUser(user);
     }
 
     public Player updatePlayer(Player modifiedPlayer, Long id) {

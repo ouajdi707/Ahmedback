@@ -1,6 +1,7 @@
 package org.devellopement.pfeback.services;
 
 import org.devellopement.pfeback.entities.Coach;
+import org.devellopement.pfeback.entities.User;
 import org.devellopement.pfeback.repository.CoachRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,6 +28,9 @@ coachRepository.deleteById(id);
     @Override
     public Coach findById(Long id) {
        return coachRepository.findById(id).get();
+    }
+    public Coach findByUser(User user) {
+       return coachRepository.findByUser(user);
     }
 
     @Override
