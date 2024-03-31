@@ -12,12 +12,16 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@Table(uniqueConstraints={@UniqueConstraint(columnNames={"code"})})
+
 public class User {
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     @Column(name="user_Id")
     private Long id;
+    @Column(name = "code")
+    private Long code;
     @Column(name = "username")
     private String username;
     @Column(name = "password")
@@ -26,6 +30,8 @@ public class User {
     private String email;
     @Column(name="enable")
     private boolean enable;
+    @Column(name="verify")
+    private boolean verify;
 
     @OneToOne( optional = true, cascade = CascadeType.ALL)
     private FileDB image;
@@ -50,5 +56,11 @@ public class User {
         this.username=username;
                 this.password=password;
                 this.email=email;
+    }
+    @PrePersist
+    public void generateCode() {
+        // Generate a random code here
+        // Example: Generating a random long code
+        this.code = (long) (Math.random() * 1000000);
     }
 }

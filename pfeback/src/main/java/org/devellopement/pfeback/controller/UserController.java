@@ -72,7 +72,7 @@ public class UserController {
         user.setUsername((String) userMap.get("username"));
         user.setPassword(encoder.encode((CharSequence) userMap.get("password")));
         user.setEmail((String) userMap.get("email"));
-        user.setEnable((boolean) userMap.get("enable"));
+        user.setEnable(Boolean.parseBoolean((String) userMap.get("enable")));
         userRepository.save(user);
 
         // Find the role by name
@@ -145,6 +145,7 @@ public class UserController {
             userData.put("email", user.getEmail());
             userData.put("enable", user.isEnable());
             userData.put("roles", user.getRoles());
+            userData.put("password", user.getPassword());
 
             Player player = playerRepository.findByUser(user);
             if (player != null) {
