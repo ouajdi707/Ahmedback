@@ -1,9 +1,7 @@
 package org.devellopement.pfeback.services;
 
-import org.devellopement.pfeback.entities.Role;
-import org.devellopement.pfeback.entities.User;
-import org.devellopement.pfeback.repository.RoleRepository;
-import org.devellopement.pfeback.repository.UserRepository;
+import org.devellopement.pfeback.entities.*;
+import org.devellopement.pfeback.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,7 +16,15 @@ public class UserServiceImpl implements Userservice {
     UserRepository userRepository;
     @Autowired
     RoleRepository roleRepository;
+    @Autowired
+    CoachRepository coachRepository;
+    @Autowired
+    ManagerRepository managerRepository;
+    @Autowired
+    SponsorRepository sponsorRepository;
 
+    @Autowired
+    PlayerRepository playerRepository;
     @Override
     public List<User> RetreiveAllUser() {
         return userRepository.findAll();
@@ -80,7 +86,26 @@ public class UserServiceImpl implements Userservice {
                 user.getRoles().clear();
                 user.getRoles().add(role);
             }
-
+            if (roleName.contains("ROLE_PLAYER")) {
+                Player player = new Player();
+                player.setUser(user);
+                playerRepository.save(player);
+            }
+            if (roleName.contains("ROLE_COACH")) {
+                Coach coach = new Coach();
+                coach.setUser(user);
+                coachRepository.save(coach);
+            }
+            if (roleName.contains("ROLE_SPONSOR")) {
+                Sponsor sponsor = new Sponsor();
+                sponsor.setUser(user);
+                sponsorRepository.save(sponsor);
+            }
+            if (roleName.contains("ROLE_MANAGER")) {
+                Manager manager = new Manager();
+                manager.setUser(user);
+                managerRepository.save(manager);
+            }
             // Save the updated user
             return userRepository.save(user);
         } else {
