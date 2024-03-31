@@ -2,8 +2,10 @@ package org.devellopement.pfeback.services;
 
 import org.devellopement.pfeback.entities.Sponsor;
 import org.devellopement.pfeback.entities.SponsorTeam;
+import org.devellopement.pfeback.entities.User;
 import org.devellopement.pfeback.repository.SponsorRepository;
 import org.devellopement.pfeback.repository.SponsorTeamRepo;
+import org.devellopement.pfeback.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +15,8 @@ import java.util.List;
 public class SponsorServiceImpl implements SponsorService{
     @Autowired
     SponsorRepository sponsorRepository;
+    @Autowired
+    UserRepository userRepository;
     @Autowired
     private SponsorTeamRepo sponsorTeamRepository;
     @Override
@@ -33,7 +37,8 @@ public class SponsorServiceImpl implements SponsorService{
 
     @Override
     public Sponsor findById(Long id) {
-        return sponsorRepository.findById(id).get();
+        User user = userRepository.findById(id).get();
+        return sponsorRepository.findByUser(user) ;
     }
 
     @Override

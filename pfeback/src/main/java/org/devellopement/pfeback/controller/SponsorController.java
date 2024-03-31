@@ -26,9 +26,9 @@ public class SponsorController {
     public void removeSponsor(@PathVariable("sponsor-id") Long id) {
         sponsorService.deleteSponsor(id);
     }
-    @GetMapping("/getSponsor/{sponsor-id}")
+    @GetMapping("/getSponsor/{user-id}")
     @ResponseBody
-    public Sponsor getSponsor(@PathVariable("sponsor-id")Long id)
+    public Sponsor getSponsor(@PathVariable("user-id")Long id)
     {
         return sponsorService.findById(id);
     }
