@@ -41,7 +41,7 @@ public class CoachController {
 
         return coachService.addCoach(coach);
     }
-    @PutMapping("/coach/{caoch-id}")
+    @PutMapping("/coach/{coach-id}")
     public ResponseEntity<Coach> updateCoach(@PathVariable("coach-id") Long id, @RequestBody Coach modifiedCoach) {
         Coach updatedCoach = coachService.updateCoach(modifiedCoach, id);
         return ResponseEntity.ok(updatedCoach);

@@ -33,7 +33,7 @@ coachRepository.deleteById(id);
     public Coach updateCoach(Coach modifiedCoach, Long id) {
         Coach existingCoach = coachRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Coach not found"));
-
+        System.out.println(modifiedCoach.getRapport());
         existingCoach.setRapport(modifiedCoach.getRapport());
 
         modifiedCoach.setUser(existingCoach.getUser());

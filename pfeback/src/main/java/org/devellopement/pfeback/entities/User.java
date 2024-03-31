@@ -1,5 +1,6 @@
 package org.devellopement.pfeback.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -42,13 +43,17 @@ public class User {
             inverseJoinColumns = { @JoinColumn(name = "role_Id") })
     private List<Role> roles;
     @OneToOne(mappedBy = "user")
+    @JsonIgnore
     private Manager manager;
 
     @OneToOne(mappedBy = "user")
+    @JsonIgnore
     private Sponsor sponsor;
     @OneToOne(mappedBy = "user")
+    @JsonIgnore
     private Coach coach;
     @OneToOne(mappedBy = "user")
+    @JsonIgnore
     private Player player;
 
 

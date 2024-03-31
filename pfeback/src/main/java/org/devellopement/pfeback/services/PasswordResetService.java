@@ -80,7 +80,7 @@ public class PasswordResetService {
         boolean multipart = true;
         MimeMessageHelper helper = new MimeMessageHelper(message, multipart, "utf-8");
 
-        String resetUrl = "http://localhost:4200/api/password/reset/" + token;
+        String resetUrl = "http://localhost:4200/authentication/reset-pwd/" + token;
 
         String htmlMsg = "<h3>Bonjour,</h3>"
                 + "<p>Veuillez cliquer sur le lien ci-dessous pour réinitialiser votre mot de passe :</p>"

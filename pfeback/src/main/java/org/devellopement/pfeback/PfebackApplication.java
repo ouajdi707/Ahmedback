@@ -68,6 +68,7 @@ public class PfebackApplication {
                 User user = new User();
                 user.setRoles(rolesAdmin);
                 user.setUsername("admin");
+                user.setVerify(true);
                 user.setPassword(bcrypt);
                 user.setEmail("ahmed@gmail.com");
                 userRepository.save(user);

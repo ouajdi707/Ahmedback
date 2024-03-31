@@ -125,33 +125,37 @@ public class AuthController {
         if (strRoles != null && !strRoles.isEmpty()) {
             strRoles.forEach(role -> {
                 switch (role) {
-                    case "admin":
+                    case "ROLE_ADMIN":
                         Role adminRole = roleRepository.findByName("ROLE_ADMIN")
                                 .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
                         roles.add(adminRole);
                         break;
-                    case "player":
+                    case "ROLE_PLAYER":
                         Role playerRole = roleRepository.findByName("ROLE_PLAYER")
                                 .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
                         roles.add(playerRole);
                         break;
-                    case "coach":
+                    case "ROLE_COACH":
                         Role coachRole = roleRepository.findByName("ROLE_COACH")
                                 .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
                         roles.add(coachRole);
-                    case "manager":
+                        break;
+                    case "ROLE_MANAGER":
                         Role managerRole = roleRepository.findByName("ROLE_MANAGER")
                                 .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
                         roles.add(managerRole);
-                    case "sponsor":
+                        break;
+                    case "ROLE_SPONSOR":
                         Role spnsorRole = roleRepository.findByName("ROLE_SPONSOR")
                                 .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
                         roles.add(spnsorRole);
+                        break;
                     default:
 
                         Role userRole = roleRepository.findByName("ROLE_USER")
                                 .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
                         roles.add(userRole);
+                        break;
                 }
             });
         } else {
@@ -163,25 +167,26 @@ public class AuthController {
 
         // Assigner les rôles à l'utilisateur
         user.setRoles(roles);
+        user.setVerify(true);
 
         // Sauvegarder l'utilisateur dans la base de données
         userRepository.save(user);
-        if (strRoles.contains("player")) {
+        if (strRoles.contains("ROLE_PLAYER")) {
             Player player = new Player();
             player.setUser(user);
             playerRepository.save(player);
         }
-        if (strRoles.contains("coach")) {
+        if (strRoles.contains("ROLE_COACH")) {
             Coach coach = new Coach();
             coach.setUser(user);
             coachRepository.save(coach);
         }
-        if (strRoles.contains("sponsor")) {
+        if (strRoles.contains("ROLE_SPONSOR")) {
             Sponsor sponsor = new Sponsor();
             sponsor.setUser(user);
             sponsorRepository.save(sponsor);
         }
-        if (strRoles.contains("manager")) {
+        if (strRoles.contains("ROLE_MANAGER")) {
             Manager manager = new Manager();
             manager.setUser(user);
             managerRepository.save(manager);

@@ -22,6 +22,7 @@ public class Sponsor {
     private String TermesFinancieres;
     @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id") // Nom de la colonne dans la table player qui fait référence à l'utilisateur
+
     private User user;
     @OneToOne(mappedBy = "sponsor", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private ContratSponsor contratSponsor;
